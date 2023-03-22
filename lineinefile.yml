@@ -1,0 +1,9 @@
+---
+  - name: Playbook
+    hosts: all
+    tasks:
+      - name: Lineinfile Module
+        lineinfile:
+          path: /home/ansadmin/a.txt
+          regexp: '^(.*)the dest option(.*)$'
+          line: 'the Source option has been changed to path as default'

@@ -1,0 +1,26 @@
+---
+  - name: register module
+    hosts: all
+    become: yes
+    tasks:
+      - name: installing the httpd
+        yum:
+          name: httpd
+          state: present
+        ignore_errors: True
+      - name: stawrting the service
+        service:
+          name: httpd
+          state: started
+        ignore_errors: True
+
+      - name: storing the output
+        command: systemctl status httpd
+        register: httpd_status
+        ignore_errors: True
+
+
+      - name: storing the output
+        debug:
+          var: httpd_status
+        ignore_errors: True

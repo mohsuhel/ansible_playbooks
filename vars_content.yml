@@ -1,0 +1,15 @@
+---
+  - name: Playbook
+    hosts: all
+    vars:
+      my_content: "this is my New reuirement"
+    tasks:
+      - name: "Create the file"
+        file:
+          path: /home/ansadmin/a.txt
+          state: touch
+
+      - name: "add the content to the created file"
+        copy:
+          dest: /home/ansadmin/a.txt
+          content: "{{ my_content }}"

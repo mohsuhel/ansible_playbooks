@@ -1,0 +1,16 @@
+---
+ - hosts: all
+   become: yes
+   tasks:
+     - name: Fetch the file from the S1 to control machine
+       fetch: 
+         src: /home/ansadmin/ansiblefetchdemo.conf 
+         dest: buffer/ 
+         flat: yes
+       when: "{{ inventory_hostname == 'S1' }}"
+
+     - name: Copy the file from control machine to S2
+       copy: 
+         src: buffer/ansiblefetchdemo.conf 
+         dest: /home/ansadmin/
+       when: "{{ inventory_hostname == 'S2' }}"

@@ -1,0 +1,11 @@
+---
+  - name: This is my sample playbook
+    hosts: all
+    vars_files:
+      - "./file.yml"
+
+    tasks:
+      - name: Calling the file 
+        copy:
+          dest: /home/ansadmin/a.txt
+          content: "{{ my_content }}"

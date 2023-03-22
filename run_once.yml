@@ -1,0 +1,11 @@
+---
+  - name: copying the file 
+    hosts: all
+    vars:
+      my_content: "Hi this is playbook is about delegate module" 
+    tasks: 
+      - name: task using the delage module
+        copy:
+          dest: /tmp/e.txt
+          content: "{{ my_content }}"
+        run_once: true

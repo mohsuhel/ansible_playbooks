@@ -1,0 +1,20 @@
+---
+  - name: playbook
+    hosts: all
+    tasks:
+      - name: Ignore errors
+        shell: |
+          mvn --version
+        ignore_errors: True
+        register: data
+
+      - name: printing the httpd status
+        debug:
+          var: data
+
+      - name: installing the maven
+        become: yes
+        yum: 
+          name: maven
+          state: present
+        when: data.rc != 0

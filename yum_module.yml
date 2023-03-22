@@ -1,0 +1,10 @@
+---
+  - name: Sample Playbook2
+    hosts: all
+    become: yes
+
+    tasks: 
+      - name: Installing the httpd service
+        yum:
+          name: httpd
+          state: present

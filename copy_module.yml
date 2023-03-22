@@ -1,0 +1,16 @@
+---
+  - name: Sample Playbook
+    hosts: all
+    become: yes
+
+    tasks:
+      - name: Copy the file 
+        copy: 
+          src: /home/ansadmin/playbooks/yum_module.yml
+          dest: /home/ansadmin/
+
+
+      - name: delete the file
+        file: 
+          path: /home/ansadmin/yum_module.yml
+          state: absent 

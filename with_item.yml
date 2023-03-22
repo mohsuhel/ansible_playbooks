@@ -1,0 +1,19 @@
+---
+  - name: installing the multiple packages
+    hosts: all
+
+    tasks:
+      - name: installing the multiple package by using the withitems
+        yum:
+          name: "{{ item }}"
+          state: present
+        with_items:
+          - java
+          - git
+          - httpd
+          - tree
+        register: data
+
+      - name: Printing the register value
+        debug:
+          var: data

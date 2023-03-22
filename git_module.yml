@@ -1,0 +1,12 @@
+---
+  - name: using the git module
+    hosts: all
+    vars:
+      token: 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
+      username: naveen5758
+      repo_name: sample_project
+    tasks:
+      - name: cloning the project from SCM
+        git:
+          repo: https://{{token}}@github.com/{{username}}/{{repo_name}}.git
+          dest: /home/ansadmin/naveen

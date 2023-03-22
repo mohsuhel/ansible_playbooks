@@ -1,0 +1,20 @@
+---
+  - name: Plabook
+    hosts: all
+    become: yes
+    tasks:
+      - name: check httpd
+        shell: |
+          rpm -qa | grep "httpd"
+        ignore_errors: True
+        register: data
+
+      - name: printing the httpd status
+        debug:
+          var: data
+      
+      - name: installing the httpd
+        yum: 
+          name: httpd
+          state: latest
+        when: data.rc != 0
